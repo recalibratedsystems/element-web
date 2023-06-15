@@ -2219,11 +2219,6 @@
     expect "^29.0.0"
     pretty-format "^29.0.0"
 
-"@types/jitsi-meet@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@types/jitsi-meet/-/jitsi-meet-2.0.2.tgz#4670e6dd47f2762cda5af53b73ab0a6e39ec0205"
-  integrity sha512-rnb5znCdZs7T2VgA16wyu5UHIbq+WR2HH233GPkS6HQ9m7Sh5jiXChZ41jo0tCTtNuSCziPIb5sI+6OPKK8h+Q==
-
 "@types/jsdom@^20.0.0":
   version "20.0.1"
   resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-20.0.1.tgz#07c14bc19bd2f918c1929541cdaacae894744808"

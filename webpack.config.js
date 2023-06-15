@@ -145,7 +145,6 @@ module.exports = (env, argv) => {
         entry: {
             bundle: "./src/vector/index.ts",
             mobileguide: "./src/vector/mobile_guide/index.ts",
-            jitsi: "./src/vector/jitsi/index.ts",
             usercontent: "./node_modules/matrix-react-sdk/src/usercontent/index.ts",
             ...(useHMR ? {} : cssThemes),
         },
@@ -608,20 +607,12 @@ module.exports = (env, argv) => {
                 // HtmlWebpackPlugin will screw up our formatting like the names
                 // of the themes and which chunks we actually care about.
                 inject: false,
-                excludeChunks: ["mobileguide", "usercontent", "jitsi"],
+                excludeChunks: ["mobileguide", "usercontent"],
                 minify: false,
                 templateParameters: {
                     og_image_url: ogImageUrl,
                     csp_extra_source: process.env.CSP_EXTRA_SOURCE ?? "",
                 },
-            }),
-
-            // This is the jitsi widget wrapper (embedded, so isolated stack)
-            new HtmlWebpackPlugin({
-                template: "./src/vector/jitsi/index.html",
-                filename: "jitsi.html",
-                minify: false,
-                chunks: ["jitsi"],
             }),
 
             // This is the mobile guide's entry point (separate for faster mobile loading)

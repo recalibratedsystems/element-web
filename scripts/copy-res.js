@@ -66,8 +66,6 @@ const COPY_LIST = [
     ["res/apple-app-site-association", "webapp"],
     ["res/manifest.json", "webapp"],
     ["res/sw.js", "webapp"],
-    ["res/welcome.html", "webapp"],
-    ["res/welcome/**", "webapp/welcome"],
     ["res/themes/**", "webapp/themes"],
     ["res/vector-icons/**", "webapp/vector-icons"],
     ["res/decoder-ring/**", "webapp/decoder-ring"],

@@ -34,7 +34,7 @@ import { ModuleRunner } from "matrix-react-sdk/src/modules/ModuleRunner";
 import ElectronPlatform from "./platform/ElectronPlatform";
 import PWAPlatform from "./platform/PWAPlatform";
 import WebPlatform from "./platform/WebPlatform";
-import { initRageshake, initRageshakeStore } from "./rageshakesetup";
+import { initRageshake } from "./rageshakesetup";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - this path is created at runtime and therefore won't exist at typecheck time
 import { INSTALLED_MODULES } from "../modules";
@@ -55,9 +55,6 @@ export function preparePlatform(): void {
 }
 
 export function setupLogStorage(): Promise<void> {
-    if (SdkConfig.get().bug_report_endpoint_url) {
-        return initRageshakeStore();
-    }
     logger.warn("No bug report endpoint set - logs will not be persisted");
     return Promise.resolve();
 }

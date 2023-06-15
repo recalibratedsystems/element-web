@@ -10,7 +10,6 @@
         "https://scalar-staging.vector.im/api",
         "https://scalar-staging.riot.im/scalar/api"
     ],
-    "bug_report_endpoint_url": "https://element.io/bugreports/submit",
     "uisi_autorageshake_app": "element-auto-uisi",
     "showLabsSettings": false,
     "roomDirectory": {
@@ -20,16 +19,6 @@
         "https://matrix.org": false,
         "https://matrix-client.matrix.org": false
     },
-    "terms_and_conditions_links": [
-        {
-            "url": "https://element.io/privacy",
-            "text": "Privacy Policy"
-        },
-        {
-            "url": "https://element.io/cookie-policy",
-            "text": "Cookie Policy"
-        }
-    ],
     "posthog": {
         "projectApiKey": "phc_Jzsm6DTm6V2705zeU5dcNvQDlonOR68XvX2sh1sEOHO",
         "apiHost": "https://posthog.element.io"

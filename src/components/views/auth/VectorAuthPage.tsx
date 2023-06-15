@@ -17,8 +17,6 @@ limitations under the License.
 import * as React from "react";
 import SdkConfig from "matrix-react-sdk/src/SdkConfig";
 
-import VectorAuthFooter from "./VectorAuthFooter";
-
 export default class VectorAuthPage extends React.PureComponent {
     private static welcomeBackgroundUrl?: string;
 
@@ -77,7 +75,6 @@ export default class VectorAuthPage extends React.PureComponent {
                         {this.props.children}
                     </div>
                 </div>
-                <VectorAuthFooter />
             </div>
         );
     }

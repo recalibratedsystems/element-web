@@ -147,12 +147,6 @@ Enables sharing your current location to the timeline, with live updates.
 
 Enables support for creating and joining video rooms, which are persistent video chats that users can jump in and out of.
 
-## Element Call video rooms (`feature_element_call_video_rooms`) [In Development]
-
-Enables support for video rooms that use Element Call rather than Jitsi, and causes the 'New video room' option to create Element Call video rooms rather than Jitsi ones.
-
-This flag will not have any effect unless `feature_video_rooms` is also enabled.
-
 ## New group call experience (`feature_group_calls`) [In Development]
 
 This feature allows users to place and join native [MSC3401](https://github.com/matrix-org/matrix-spec-proposals/pull/3401) group calls in compatible rooms, using Element Call.

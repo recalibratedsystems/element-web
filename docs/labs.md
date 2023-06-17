@@ -147,12 +147,6 @@ Enables sharing your current location to the timeline, with live updates.
 
 Enables support for creating and joining video rooms, which are persistent video chats that users can jump in and out of.
 
-## New group call experience (`feature_group_calls`) [In Development]
-
-This feature allows users to place and join native [MSC3401](https://github.com/matrix-org/matrix-spec-proposals/pull/3401) group calls in compatible rooms, using Element Call.
-
-If you're enabling this at the deployment level, you may also want to reference the docs for the `element_call` config section.
-
 ## Rich text in room topics (`feature_html_topic`) [In Development]
 
 Enables rendering of MD / HTML in room topics.

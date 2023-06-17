@@ -61,7 +61,6 @@ Then you can deploy it to your cluster with something like `kubectl apply -f my-
             "defaultCountryCode": "GB",
             "show_labs_settings": false,
             "features": { },
-            "default_federate": true,
             "default_theme": "light",
             "room_directory": {
                 "servers": [

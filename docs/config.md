@@ -76,8 +76,6 @@ the functionality.
 Some settings additionally support being specified at the config level to affect the user experience of your Element Web
 instance. As of writing those settings are not fully documented, however a few are:
 
-1. `default_federate`: When `true` (default), rooms will be marked as "federatable" during creation. Typically this setting
-   shouldn't be used as the federation capabilities of a room **cannot** be changed after the room is created.
 2. `default_country_code`: An optional ISO 3166 alpha2 country code (eg: `GB`, the default) to use when showing phone number
    inputs.
 3. `room_directory`: Optionally defines how the room directory component behaves. Currently only a single property, `servers`
@@ -252,117 +250,6 @@ When Element is deployed alongside a homeserver with SSO-only login, some option
     ```
     It is most common to use the `immediate` flag instead of `on_welcome_page`.
 
-## VoIP / Jitsi calls
-
-Currently, Element uses Jitsi to offer conference calls in rooms, with an experimental Element Call implementation in the works.
-A set of defaults are applied, pointing at our Jitsi and Element Call instances, to ensure conference calling works, however you
-can point Element at your own if you prefer.
-
-More information about the Jitsi setup can be found [here](./jitsi.md).
-
-The VoIP and Jitsi options are:
-
-1. `jitsi`: Optional configuration for how to start Jitsi conferences. Currently can only contain a single `preferred_domain`
-   value which points at the domain of the Jitsi instance. Defaults to `meet.element.io`. This is _not_ used if the Jitsi widget
-   was created by an integration manager, or if the homeserver provides Jitsi information in `/.well-known/matrix/client`. For
-   example:
-    ```json
-    {
-        "jitsi": {
-            "preferred_domain": "meet.jit.si"
-        }
-    }
-    ```
-2. `jitsi_widget`: Optional configuration for the built-in Jitsi widget. Currently can only contain a single `skip_built_in_welcome_screen`
-   value, denoting whether the "Join Conference" button should be shown. When `true` (default `false`), Jitsi calls will skip to
-   the call instead of having a screen with a single button on it. This is most useful if the Jitsi instance being used already
-   has a landing page for users to test audio and video before joining the call, otherwise users will automatically join the call.
-   For example:
-    ```json
-    {
-        "jitsi_widget": {
-            "skip_built_in_welcome_screen": true
-        }
-    }
-    ```
-3. `voip`: Optional configuration for various VoIP features. Currently can only contain a single `obey_asserted_identity` value to
-   send MSC3086-style asserted identity messages during VoIP calls in the room corresponding to the asserted identity. This _must_
-   only be set in trusted environments. The option defaults to `false`. For example:
-    ```json
-    {
-        "voip": {
-            "obey_asserted_identity": false
-        }
-    }
-    ```
-4. `widget_build_url`: Optional URL to have Element make a request to when a user presses the voice/video call buttons in the app,
-   if a call would normally be started by the action. The URL will be called with a `roomId` query parameter to identify the room
-   being called in. The URL must respond with a JSON object similar to the following:
-    ```json
-    {
-        "widget_id": "$arbitrary_string",
-        "widget": {
-            "creatorUserId": "@user:example.org",
-            "id": "$the_same_widget_id",
-            "type": "m.custom",
-            "waitForIframeLoad": true,
-            "name": "My Widget Name Here",
-            "avatar_url": "mxc://example.org/abc123",
-            "url": "https://example.org/widget.html",
-            "data": {
-                "title": "Subtitle goes here"
-            }
-        },
-        "layout": {
-            "container": "top",
-            "index": 0,
-            "width": 65,
-            "height": 50
-        }
-    }
-    ```
-    The `widget` is the `content` of a normal widget state event. The `layout` is the layout specifier for the widget being created,
-    as defined by the `io.element.widgets.layout` state event. By default this applies to all rooms, but the behaviour can be skipped for DMs
-    by setting the option `widget_build_url_ignore_dm` to `true`.
-5. `audio_stream_url`: Optional URL to pass to Jitsi to enable live streaming. This option is considered experimental and may be removed
-   at any time without notice.
-6. `element_call`: Optional configuration for native group calls using Element Call, with the following subkeys:
-    - `url`: The URL of the Element Call instance to use for native group calls. This option is considered experimental
-      and may be removed at any time without notice. Defaults to `https://call.element.io`.
-    - `use_exclusively`: A boolean specifying whether Element Call should be used exclusively as the only VoIP stack in
-      the app, removing the ability to start legacy 1:1 calls or Jitsi calls. Defaults to `false`.
-    - `participant_limit`: The maximum number of users who can join a call; if
-      this number is exceeded, the user will not be able to join a given call.
-    - `brand`: Optional name for the app. Defaults to `Element Call`. This is
-      used throughout the application in various strings/locations.
-
-## Bug reporting
-
-If you run your own rageshake server to collect bug reports, the following options may be of interest:
-
-1. `bug_report_endpoint_url`: URL for where to submit rageshake logs to. Rageshakes include feedback submissions and bug reports. When
-   not present in the config, the app will disable all rageshake functionality. Set to `https://element.io/bugreports/submit` to submit
-   rageshakes to us, or use your own rageshake server.
-2. `uisi_autorageshake_app`: If a user has enabled the "automatically send debug logs on decryption errors" flag, this option will be sent
-   alongside the rageshake so the rageshake server can filter them by app name. By default, this will be `element-auto-uisi`
-   (in contrast to other rageshakes submitted by the app, which use `element-web`).
-
-If you would like to use [Sentry](https://sentry.io/) for rageshake data, add a `sentry` object to your config with the following values:
-
-1. `dsn`: The Sentry [DSN](https://docs.sentry.io/product/sentry-basics/dsn-explainer/).
-2. `environment`: Optional [environment](https://docs.sentry.io/product/sentry-basics/environments/) to pass to Sentry.
-
-For example:
-
-```json
-{
-    "sentry": {
-        "dsn": "dsn-goes-here",
-        "environment": "production"
-    }
-}
-```
-
 ## Integration managers
 
 Integration managers are embedded applications within Element to help the user configure bots, bridges, and widgets. An integration manager
@@ -407,22 +294,6 @@ To add additional "terms and conditions" links throughout the app, use the follo
     "terms_and_conditions_links": [{ "text": "Code of conduct", "url": "https://example.org/code-of-conduct" }]
 }
 ```
-
-## Analytics
-
-To configure [Posthog](https://posthog.com/), add the following under `posthog` in your config:
-
-1. `api_host`: The hostname of the posthog server.
-2. `project_api_key`: The API key from posthog.
-
-When these configuration options are not present,
-analytics are deemed impossible and the user won't be asked to opt in to the system.
-
-There are additional root-level options which can be specified:
-
-1. `analytics_owner`: the company name used in dialogs talking about analytics - this defaults to `brand`,
-   and is useful when the provider of analytics is different from the provider of the Element instance.
-2. `privacy_policy_url`: URL to the privacy policy including the analytics collection policy.
 
 ## Miscellaneous
 
@@ -482,8 +353,6 @@ Currently, the following UI feature flags are supported:
 
 -   `UIFeature.urlPreviews` - Whether URL previews are enabled across the entire application.
 -   `UIFeature.feedback` - Whether prompts to supply feedback are shown.
--   `UIFeature.voip` - Whether or not VoIP is shown readily to the user. When disabled,
-    Jitsi widgets will still work though they cannot easily be added.
 -   `UIFeature.widgets` - Whether or not widgets will be shown.
 -   `UIFeature.advancedSettings` - Whether or not sections titled "advanced" in room and
     user settings are shown to the user.

@@ -163,11 +163,6 @@ describe("ElectronPlatform", () => {
         expect(platform.supportsDesktopCapturer()).toBe(true);
     });
 
-    it("indicates no support for jitsi screensharing", () => {
-        const platform = new ElectronPlatform();
-        expect(platform.supportsJitsiScreensharing()).toBe(false);
-    });
-
     describe("notifications", () => {
         it("indicates support for notifications", () => {
             const platform = new ElectronPlatform();

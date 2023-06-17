@@ -23,10 +23,6 @@
         "dsn": "https://029a0eb289f942508ae0fb17935bd8c5@sentry.matrix.org/6",
         "environment": "develop"
     },
-    "posthog": {
-        "projectApiKey": "phc_Jzsm6DTm6V2705zeU5dcNvQDlonOR68XvX2sh1sEOHO",
-        "apiHost": "https://posthog.element.io"
-    },
     "privacy_policy_url": "https://element.io/cookie-policy",
     "features": {
         "feature_spotlight": true,
